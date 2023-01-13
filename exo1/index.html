@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <form class="form" id="contactForm">
+        <div class="form__section">
+            <div>
+                <input class="form__input" type="text" name="Name" id="name" placeholder="Name">
+                <label class="error-message" for="name" id="nameError">Veuillez renseigner votre nom.</label>
+            </div>
+            <div>
+                <input class="form__input" type="email" name="email" id="email" placeholder="Email address">
+                <label class="error-message" for="email" id="emailError">Veuillez renseigner une adresse mail valide.</label>
+            </div>
+        </div>
+        <div class="form__section">
+            <div>
+                <input class="form__input" type="tel" name="phone" id="phone" placeholder="Phone number">
+                <label class="error-message" for="phone" id="phoneError">Veuillez renseigner un numéro de téléphone valide.</label>
+            </div>
+            <div>
+                <input class="form__input" type="password" name="password" id="password" placeholder="Password">
+                <label class="error-message" for="password" id="passwordError">Veuillez renseigner un mot de passe valide.</label>
+            </div>
+        </div>
+        <div class="form__button">    
+            <button class="form__submit" type="submit" id="submit">Submit</button>
+            <button class="form__reset" type="reset" id="reset">Reset</button>
+        </div>
+    </form>    
+
+    <script src="./app.js"></script>
+</body>
+</html>
