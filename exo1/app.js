@@ -25,9 +25,6 @@ contactForm.addEventListener('submit', (event) => {
 
     /* crée une variable pour vérifier s'il y a une erreur ou non. */
     let error = false;
-
-    /* crée un objet pour stocker les données de l'itilisateur */
-    const userData = {};
     
     // crée les regex
     const nameRegex = /^[a-zA-Z ]+$/;
