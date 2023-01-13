@@ -37,9 +37,10 @@ contactForm.addEventListener('submit', (event) => {
     
 /* forEach() = pour chaque élément */
     formData.forEach((value, key) => {
-    /* vérifie si la valeur est vide ou non. Si oui il attribue une erreur à l'élément. */
+    /* vérifie si la valeur est vide ou non. Si oui il attribue une erreur à l'élément et affiche l'erreur. */
         if (!value) {
-            errors[key].setAttribute('data-error', true), error = true;
+            error = true;
+            errors[key].style.display = 'block';
         /* si la valeur n'est pas vide, il vérifie si celle-ci et valide ou pas. Si elle n'est pas valide, il attribue une erreur à l'élement. Si elle est valide, il enlève l'erreur. */
         /* test() vérifie la correspondance et renvoie vrai ou faux (valide ou pas) */
         } else {
