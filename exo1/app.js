@@ -1,72 +1,71 @@
+// récupère le formulaire par son id
 const contactForm = document.getElementById("contactForm");
 
 contactForm.addEventListener('submit', (event) => {
     event.preventDefault();
 
-    const nameInput = document.getElementById("name");
-    const emailInput = document.getElementById("email");
-    const phoneInput = document.getElementById("phone");
-    const passwordInput = document.getElementById("password");
+    // // récupère les éléments par leur id  
+    // const nameInput = document.getElementById("name");
+    // const emailInput = document.getElementById("email");
+    // const phoneInput = document.getElementById("phone");
+    // const passwordInput = document.getElementById("password");
+    
 
-    const formData = {
-        name: nameInput.value,
-        email: emailInput.value,
-        phone: phoneInput.value,
-        password: passwordInput.value,
-    }
-
+    /* récupére les données du formulaire. */
+    const formData = new FormData(contactForm);
+    
+    /* récupère les éléments "error". */
     const errors = {
-        name: false,
-        email: false,
-        phone: false,
-        password: false
+        name: document.getElementById('nameError'),
+        email: document.getElementById('emailError'),
+        phone: document.getElementById('phoneError'),
+        password: document.getElementById('passwordError'),
     }
+
+
+    /* crée une variable pour vérifier s'il y a une erreur ou non. */
+    let error = false;
+
+    /* crée un objet pour stocker les données de l'itilisateur */
+    const userData = {};
     
-    const nameError = document.getElementById('nameError');
-    const emailError = document.getElementById('emailError');
-    const phoneError = document.getElementById('phoneError');
-    const passwordError = document.getElementById('passwordError');
+    // crée les regex
+    const nameRegex = /^[a-zA-Z ]+$/;
+    const emailRegex = /[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}/igm;
+    const phoneRegex = /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&_])[A-Za-z\d$@$!%*?&_]{minlength,maxlength}$/;
     
-    nameError.style.display = 'none';
-    emailError.style.display = 'none';
-    phoneError.style.display = 'none';
-    passwordError.style.display = 'none';
-    
-    
-    
-    if (!formData.name || !formData.email || !formData.phone || !formData.password) {
-        const nameRegex = /^[a-zA-Z ]+$/;
-        const emailRegex = /[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}/igm;
-        const phoneRegex = /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/;
-        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,30}$/;
-        
-        if (!formData.name || !nameRegex.test(formData.name)) {
-            errors.name = true;
-            nameError.style.display = 'block';
-        }
-        if (!formData.email || !emailRegex.test(formData.email)) {
-            errors.email = true;
-            emailError.style.display = 'block';
-        }
-        if (!formData.phone || !phoneRegex.test(formData.phone)) {
-            errors.phone = true;
-            phoneError.style.display = 'block';
-        }
-        if (!formData.password || !passwordRegex.test(formData.password)) {
-            errors.password = true;
-            passwordError.style.display = 'block';
-        }
-        const buttonSubmit = document.getElementById('submit');
-        
-        buttonSubmit.addEventListener('click', (event) => {
-            if (errors.name || errors.email || errors.phone || errors.password) {
-                event.preventDefault();
-            } else {
-                console.log(formData)
+/* forEach() = pour chaque élément */
+    formData.forEach((value, key) => {
+    /* vérifie si la valeur est vide ou non. Si oui il attribue une erreur à l'élément. */
+        if (!value) {
+            errors[key].setAttribute('data-error', true), error = true;
+        /* si la valeur n'est pas vide, il vérifie si celle-ci et valide ou pas. Si elle n'est pas valide, il attribue une erreur à l'élement. Si elle est valide, il enlève l'erreur. */
+        /* test() vérifie la correspondance et renvoie vrai ou faux (valide ou pas) */
+        } else {
+            if (key === 'name' && !nameRegex.test(value)) {
+                error = true;
+                return errors[key].style.display = 'block';
+            } else if (key === 'email' && !emailRegex.test(value)) {
+                error = true;
+                return errors[key].style.display = 'block';
+            } else if (key === 'phone' && !phoneRegex.test(value)) {
+                error = true;
+                return errors[key].style.display = 'block';
+            } else if (key === 'password' && !passwordRegex.test(value)) {
+                error = true;
+                return errors[key].style.display = 'block';
             }
-        })
-        
-    } else {
-        console.log(formData)
+
+            /* vérifie s'il y a une erreur.*/
+            error = false;
+            errors[key].style.display = 'none';
+        }
+    });
+
+    /* s'il n'y a pas d'erreur, affiche les données et efface les champs du formulaire. */
+    if (!error) {
+        console.log(formData);
+        contactForm.reset();
     }
-})
+});
