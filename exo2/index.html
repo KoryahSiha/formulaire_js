@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <form class="form" id="contactForm">
+        <h1>&#x1F355 Pizza &#x1F90C</h1>
+        <div class="form__section">
+            <div>
+                <label class="form__label" for="name">Nom et prénom :</label><br>
+                <input class="form__input" type="text" name="name" id="name" placeholder="Ex : Tali Zorah"><br>
+                <label class="error-message" for="name" id="nameError">Veuillez renseigner votre nom et prénom</label>
+            </div>
+            <div>
+                <label class="form__label" for="phone">Numéro de téléphone :</label><br>
+                <input class="form__input" type="tel" name="phone" id="phone" placeholder="Ex : 06 58 49 61 25"><br>
+                <label class="error-message" for="phone" id="phoneError">Veuillez renseigner un numéro de téléphone valide</label>
+            </div>
+        </div>
+        <div class="form__section">
+            <div>
+                <label class="form__label" for="address">Adresse complète :</label><br>
+                <input class="form__input" type="text" name="address" id="address" placeholder="Ex : 36 rue de la Citadelle, 62300 Lens"><br>
+                <label class="error-message" for="address" id="addressError">Veuillez renseigner votre adresse complète</label>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="form__section2">
+            <label class="form__label2" for="size">Quelle taille souhaitez-vous pour votre pizza ? :</label>
+                <select class="form__select" name="size" id="size">
+                    <option value="">Choississez une taille</option>
+                    <option value="small">Petite + 3,00€</option>
+                    <option value="medium">Moyenne + 8,00€</option>
+                    <option value="large">Grande + 13,00€</option>
+                </select>
+                <label class="error-message" for="size" id="sizeError">Veuillez choisir une taille</label>
+        </div>
+
+        <div class="form__section2">
+            <label class="form__label2" for="pizza">Quelle pizza souhaitez-vous ? :</label>
+                <select class="form__select" name="pizza" id="pizza">
+                    <option value="">Choisissez une pizza</option>
+                    <option value="classique">Classique (jambon, fromage râpé, champignons, sauce tomate) - 11,00€</option>
+                    <option value="buffalo">Buffalo (bœuf, oignons, mozzarella, sauce bolognaise) - 11,00€</option>
+                    <option value="poulet">Poulet BBQ (poulet, champignons, mozzarella, sauce barbecue) - 11,00€</option>
+                    <option value="fromage">Trois fromages (chèvre, cheddar, comté) - 11,00€</option>
+                    <option value="blanche">Blanche (crème fraîche, lardons, mozzarella) - 11,00€</option>
+                    <option value="mer">Fruit de mer (thon, crabe, oignons, fromage râpé, sauce tomate) - 11,00€</option>
+                    <option value="vegan">Vegan (mozzarella vegan, champignons, basilic, sauce tomate) - 11,00€</option>
+                </select>
+                <label class="error-message" for="pizza" id="pizzaError">Veuillez choisir une pizza</label>
+        </div>
+
+        <div class="form__section">
+            <p class="total"></p>
+        </div>
+
+        <hr>
+
+        <div class="form__input--textarea__container">
+            <label class="form__label" for="message" id="label__message">Pour toute commande spéciale ou remarque concernant votre commande, veuillez nous laisser un message ci-dessous :</label><br>
+            <textarea class="form__input--textarea" name="message" id="message" placeholder="Tapez votre message"></textarea>
+        </div>
+
+        <button class="form__submit" type="submit" id="submit">Commander</button>
+    </form>
+
+    <script src="./app.js"></script>
+</body>
+</html>
